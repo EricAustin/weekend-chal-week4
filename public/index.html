@@ -1,12 +1,52 @@
 <!DOCTYPE html>
-    <head>
-        <title>Compensation Expenditures</title>
-        <script src='/vendors/angular.min.js'></script>
-        <script src='/vendors/client.js'></script>
-        
-    </head>
 
-    <body>
-    </body>
+<head>
+    <title>Compensation Expenditures</title>
+    <script src='/vendors/angular.min.js'></script>
+    <script src='/scripts/client.js'></script>
+    <link rel='stylesheet' href='styles/style.css'>
+Compensation Expenditures Calculator
+<br>
+</head>
+
+<body ng-app="SalaryApp" ng-controller="SalaryController as vm">
+Add employee to roster:
+    <table>
+        <tr>
+            <th><input name="first_name" type="text" ng-model='vm.newestEmployee.first_name' placeholder="First Name"></th>
+            <th><input name="last_name" type="text" ng-model='vm.newestEmployee.last_name' placeholder="Last Name"></th>
+            <th><input name="title" type="text" ng-model='vm.newestEmployee.title' placeholder="Job Title"></th>
+            <th><input name="salary" type="number" ng-model='vm.newestEmployee.salary' placeholder="Annual Compensation"></th>
+            <th><button ng-click="vm.newEmployee()">Submit</button></th>
+        </tr>
+    </table>
+    
+Employee Roster:
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Annual Compensation</th>
+                <th>Currently Active</th>
+            </tr>
+            <tr ng-repeat='person in vm.employees'>
+                    <td>{{person.id}}</td>
+                    <td>{{person.first_name}}</dh>
+                    <td>{{person.last_name}}</td>
+                    <td>{{person.title}}</td>
+                    <td>{{person.salary|currency}}</td>
+                    <td ng-switch="person.is_active">
+                        <button ng-switch-when=true class="activeButton" id=activeButton{{person.id}} ng-click=vm.makeInactive(person.id)>Currently Active</button>
+                        <button ng-switch-when=false class="inactiveButton" id=inactiveButton{{person.id}} ng-click=vm.makeActive(person.id)>Currently Inactive</button>
+                    </td>
+                </tr>
+        </thead>
+
+    </table>
+Total Monthly Expenditure is {{vm.salary|currency}}
+</body>
 
 </html>
