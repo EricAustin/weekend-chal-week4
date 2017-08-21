@@ -7,15 +7,14 @@ router.get('/', function (req, res) {
 
 	pool.connect(function (errorConnectingToDatabase, client, done) {
 		if (errorConnectingToDatabase) {
-
-			console.log('Error connecting to database', errorConnectingToDatabase);
+			// console.log('Error connecting to database', errorConnectingToDatabase);
 			res.sendStatus(500);
 		} else {
 
 			client.query('SELECT SUM(salary) FROM employees WHERE is_active=true;', function (errorMakingQuery, result) {
 				done();
 				if (errorMakingQuery) {
-					console.log('Error making database query', errorMakingQuery);
+					// console.log('Error making database query', errorMakingQuery);
 					res.sendStatus(500);
 				} else {
 					res.send(result.rows);

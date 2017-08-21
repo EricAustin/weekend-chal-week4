@@ -4,8 +4,7 @@ var router = express.Router();
 var pool = require('../modules/pool');
 
 router.put('/:id', function(req,res){
-    console.log('req.params.id', req.params.id);
-
+    // console.log('req.params.id', req.params.id);
     pool.connect(function(err,db,done){
         if (err){
             console.log('error connecting to db', err);
@@ -20,9 +19,7 @@ router.put('/:id', function(req,res){
                 }
             }); 
         }
-
     }); 
-    
 });
 
 module.exports = router;

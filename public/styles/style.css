@@ -1,6 +1,7 @@
 body {
     background-image: url("faded-bkg.jpg");
     background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
 }
 
 table, tr, th, td {
